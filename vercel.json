@@ -1,8 +1,6 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/cadastro.html" }
-  ],
-  "routes": [
-    { "src": "/", "dest": "/cadastro.html" }
+    { "source": "/", "destination": "/cadastro.html" },
+    { "source": "/(.*)", "destination": "/$1" }
   ]
 }
