@@ -743,6 +743,7 @@ document.querySelectorAll('.sb-item').forEach(item => {
     dash.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
     item.classList.add('active');
     const nav = item.getAttribute('data-nav');
+    if (!nav) return;
     if (nav === 'quiz') { location.href = 'quiz.html'; return; }
     const navMap = {
       'home': 'Visão geral',
@@ -752,7 +753,7 @@ document.querySelectorAll('.sb-item').forEach(item => {
       'conquistas': 'Conquistas',
       'config': 'Configurações'
     };
-    showPanel(navMap[nav] || '', dash);
+    if (navMap[nav]) showPanel(navMap[nav], dash);
   });
 });
 
