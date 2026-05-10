@@ -626,6 +626,12 @@ const REC_DATA = {
   ],
 };
 
+// VERIFICA SE ESTÁ LOGADO
+const gender_check = localStorage.getItem('zenia_gender');
+if (!gender_check) {
+  window.location.href = 'cadastro.html';
+}
+
 // GÊNERO
 const g = localStorage.getItem('zenia_gender') || 'feminino';
 const themeId = {feminino:'fem',masculino:'masc',neutro:'neutro'}[g] || 'fem';
