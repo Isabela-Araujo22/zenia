@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" translate="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -735,14 +735,19 @@ function showPanel(label, dash) {
   }
 }
 
-document.querySelectorAll('.sb-item').forEach(item => {
+document.querySelectorAll('.sb-item').forEach((item, index) => {
   item.addEventListener('click', e => {
     e.preventDefault();
-    const label = item.textContent.trim();
     const dash = document.querySelector('.dash.active');
     if (!dash) return;
     dash.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
     item.classList.add('active');
+    // index 1 = Avaliações (sempre, independente de tradução)
+    if (index % 7 === 1) {
+      location.href = 'quiz.html';
+      return;
+    }
+    const label = item.textContent.trim();
     showPanel(label, dash);
   });
 });
