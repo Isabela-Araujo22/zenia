@@ -1,6 +1,6 @@
+
 {
   "rewrites": [
-    { "source": "/", "destination": "/cadastro.html" },
-    { "source": "/(.*)", "destination": "/$1" }
+    { "source": "/", "destination": "/cadastro.html" }
   ]
 }
