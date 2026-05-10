@@ -745,15 +745,29 @@ document.querySelectorAll('.sb-item').forEach(item => {
     const nav = item.getAttribute('data-nav');
     if (!nav) return;
     if (nav === 'quiz') { location.href = 'quiz.html'; return; }
-    const navMap = {
-      'home': 'Visão geral',
-      'historico': 'Histórico',
-      'recomendacoes': 'Recomendações',
-      'exercicios': 'Exercícios',
-      'conquistas': 'Conquistas',
-      'config': 'Configurações'
+    if (nav === 'home') {
+      const mainItems = dash.querySelectorAll('.main > *:not(.tab-panel):not(.rec-panel)');
+      const allPanels = dash.querySelectorAll('.tab-panel, .rec-panel');
+      allPanels.forEach(p => p.classList.remove('visible'));
+      mainItems.forEach(el => el.style.display = '');
+      return;
+    }
+    const panelMap = {
+      'recomendacoes': 'rec-panel',
+      'historico': 'panel-historico',
+      'exercicios': 'panel-exercicios',
+      'conquistas': 'panel-conquistas',
+      'config': 'panel-config'
     };
-    if (navMap[nav]) showPanel(navMap[nav], dash);
+    const mainItems = dash.querySelectorAll('.main > *:not(.tab-panel):not(.rec-panel)');
+    const allPanels = dash.querySelectorAll('.tab-panel, .rec-panel');
+    allPanels.forEach(p => p.classList.remove('visible'));
+    mainItems.forEach(el => el.style.display = 'none');
+    const cls = panelMap[nav];
+    if (cls) {
+      const p = dash.querySelector('.' + cls);
+      if (p) p.classList.add('visible');
+    }
   });
 });
 
