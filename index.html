@@ -376,13 +376,13 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;overflow:hidden}
     <aside class="sidebar">
       <div class="sb-logo"><img src="icon-192.png" width="40" height="40" alt="ZenIA" style="border-radius:12px"><span class="sb-logo-name">ZenIA</span></div>
       <nav class="sb-nav">
-        <a class="sb-item active" href="#"><span>🏠</span> Visão geral</a>
-        <a class="sb-item" href="#"><span>📋</span> Avaliações</a>
-        <a class="sb-item" href="#"><span>📊</span> Histórico</a>
-        <a class="sb-item" href="#"><span>⬇️</span> Recomendações</a>
-        <a class="sb-item" href="#"><span>🧩</span> Exercícios</a>
-        <a class="sb-item" href="#"><span>🏆</span> Conquistas</a>
-        <a class="sb-item" href="#"><span>⚙️</span> Configurações</a>
+        <a class="sb-item active" href="#" data-nav="home"><span>🏠</span> Visão geral</a>
+        <a class="sb-item" href="#" data-nav="quiz"><span>📋</span> Avaliações</a>
+        <a class="sb-item" href="#" data-nav="historico"><span>📊</span> Histórico</a>
+        <a class="sb-item" href="#" data-nav="recomendacoes"><span>⬇️</span> Recomendações</a>
+        <a class="sb-item" href="#" data-nav="exercicios"><span>🧩</span> Exercícios</a>
+        <a class="sb-item" href="#" data-nav="conquistas"><span>🏆</span> Conquistas</a>
+        <a class="sb-item" href="#" data-nav="config"><span>⚙️</span> Configurações</a>
       </nav>
       <div class="sb-tip"><strong>💡 Dica do dia</strong><p>Respire fundo. Um minuto de calma já faz diferença.</p></div>
     </aside>
@@ -454,13 +454,13 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;overflow:hidden}
     <aside class="sidebar">
       <div class="sb-logo"><img src="icon-192.png" width="40" height="40" alt="ZenIA" style="border-radius:12px"><span class="sb-logo-name">ZenIA</span></div>
       <nav class="sb-nav">
-        <a class="sb-item active" href="#"><span>🏠</span> Visão geral</a>
-        <a class="sb-item" href="#"><span>📋</span> Avaliações</a>
-        <a class="sb-item" href="#"><span>📊</span> Histórico</a>
-        <a class="sb-item" href="#"><span>⬇️</span> Recomendações</a>
-        <a class="sb-item" href="#"><span>🧩</span> Exercícios</a>
-        <a class="sb-item" href="#"><span>🏆</span> Conquistas</a>
-        <a class="sb-item" href="#"><span>⚙️</span> Configurações</a>
+        <a class="sb-item active" href="#" data-nav="home"><span>🏠</span> Visão geral</a>
+        <a class="sb-item" href="#" data-nav="quiz"><span>📋</span> Avaliações</a>
+        <a class="sb-item" href="#" data-nav="historico"><span>📊</span> Histórico</a>
+        <a class="sb-item" href="#" data-nav="recomendacoes"><span>⬇️</span> Recomendações</a>
+        <a class="sb-item" href="#" data-nav="exercicios"><span>🧩</span> Exercícios</a>
+        <a class="sb-item" href="#" data-nav="conquistas"><span>🏆</span> Conquistas</a>
+        <a class="sb-item" href="#" data-nav="config"><span>⚙️</span> Configurações</a>
       </nav>
       <div class="sb-tip"><strong>🌬 Respiro do dia</strong><p>Respire fundo. Você está fazendo o seu melhor.</p></div>
     </aside>
@@ -532,13 +532,13 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;overflow:hidden}
     <aside class="sidebar">
       <div class="sb-logo"><img src="icon-192.png" width="40" height="40" alt="ZenIA" style="border-radius:12px"><span class="sb-logo-name">ZenIA</span></div>
       <nav class="sb-nav">
-        <a class="sb-item active" href="#"><span>🏠</span> Visão geral</a>
-        <a class="sb-item" href="#"><span>📋</span> Avaliações</a>
-        <a class="sb-item" href="#"><span>📊</span> Histórico</a>
-        <a class="sb-item" href="#"><span>⬇️</span> Recomendações</a>
-        <a class="sb-item" href="#"><span>🧩</span> Exercícios</a>
-        <a class="sb-item" href="#"><span>🏆</span> Conquistas</a>
-        <a class="sb-item" href="#"><span>⚙️</span> Configurações</a>
+        <a class="sb-item active" href="#" data-nav="home"><span>🏠</span> Visão geral</a>
+        <a class="sb-item" href="#" data-nav="quiz"><span>📋</span> Avaliações</a>
+        <a class="sb-item" href="#" data-nav="historico"><span>📊</span> Histórico</a>
+        <a class="sb-item" href="#" data-nav="recomendacoes"><span>⬇️</span> Recomendações</a>
+        <a class="sb-item" href="#" data-nav="exercicios"><span>🧩</span> Exercícios</a>
+        <a class="sb-item" href="#" data-nav="conquistas"><span>🏆</span> Conquistas</a>
+        <a class="sb-item" href="#" data-nav="config"><span>⚙️</span> Configurações</a>
       </nav>
       <div class="sb-tip"><strong>🌱 Respire. Você não está sozinho.</strong><p>Pequenas atitudes podem transformar seus dias.</p></div>
     </aside>
@@ -735,20 +735,24 @@ function showPanel(label, dash) {
   }
 }
 
-document.querySelectorAll('.sb-item').forEach((item, index) => {
+document.querySelectorAll('.sb-item').forEach(item => {
   item.addEventListener('click', e => {
     e.preventDefault();
     const dash = document.querySelector('.dash.active');
     if (!dash) return;
     dash.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
     item.classList.add('active');
-    // index 1 = Avaliações (sempre, independente de tradução)
-    if (index % 7 === 1) {
-      location.href = 'quiz.html';
-      return;
-    }
-    const label = item.textContent.trim();
-    showPanel(label, dash);
+    const nav = item.getAttribute('data-nav');
+    if (nav === 'quiz') { location.href = 'quiz.html'; return; }
+    const navMap = {
+      'home': 'Visão geral',
+      'historico': 'Histórico',
+      'recomendacoes': 'Recomendações',
+      'exercicios': 'Exercícios',
+      'conquistas': 'Conquistas',
+      'config': 'Configurações'
+    };
+    showPanel(navMap[nav] || '', dash);
   });
 });
 
